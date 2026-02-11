@@ -1,32 +1,34 @@
-# Use the official Python runtime image
+# Utilizar la versión oficial de Python como imagen base
 FROM python:3.13  
  
-# Create the app directory
+# Crear un directorio para la aplicación dentro del contenedor
 RUN mkdir /app
  
-# Set the working directory inside the container
+# Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
  
-# Set environment variables 
-# Prevents Python from writing pyc files to disk
+# Configurar variables de entorno 
+# PYTHONDONTWRITEBYTECODE evita que Python cree archivos .pyc, 
+# lo que puede ahorrar espacio y evitar problemas de permisos en algunos entornos.
 ENV PYTHONDONTWRITEBYTECODE=1
-#Prevents Python from buffering stdout and stderr
+# PYTHONUNBUFFERED asegura que la salida de Python se muestre en tiempo real, 
+# lo que es útil para el registro y la depuración.
 ENV PYTHONUNBUFFERED=1 
  
-# Upgrade pip
+# Actualizar pip a la última versión 
 RUN pip install --upgrade pip 
  
-# Copy the Django project  and install dependencies
+# Copiar el archivo requirements.txt al contenedor para instalar las dependencias
 COPY requirements.txt  /app/
  
-# run this command to install all dependencies 
+# Instalar todas las dependencias de requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
  
-# Copy the Django project to the container
+# Copiar el resto de los archivos de la aplicación al contenedor
 COPY . /app/
  
-# Expose the Django port
+# Exponer el puerto 8080 para acceder al servidor Django
 EXPOSE 8080
  
-# Run Django’s development server
+# Levantar el servidor Django en el puerto 8080
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]

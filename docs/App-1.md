@@ -15,7 +15,7 @@ Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs
 ## Configuración de Docker Desktop
 
 1. En Configuración > General, asegurate de que está marcada la opción "Use the WSL 2 based engine"
-2. En Configuración > Resources > WSL integration asegurate de que está activa la opción " Enable integration with my default WSL distro" y marca también la distro que tengas configurada. Ejemplo, Ubuntu.
+2. En Configuración > Resources > WSL integration asegurate de que está activa la opción "Enable integration with my default WSL distro" y marca también la distro que tengas configurada. Ejemplo, Ubuntu.
 3. Revisa que tengas Docker en la variable de entorno PATH
 
 ## Pasos
@@ -49,3 +49,9 @@ Para esto puedes utilizar:
 > kubectl expose deployment hello-node --type=LoadBalancer --port=8080
 
 En este punto ya deberíamos tener todo listo y se nos abrirá en el navegador.
+
+5. Cerrar y eliminar pods
+
+> kubectl delete service hello-node
+> kubectl delete deployment hello-node
+> minikube stop
