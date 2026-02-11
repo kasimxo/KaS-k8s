@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-hello-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-hello
+  template:
+    metadata:
+      labels:
+        app: django-hello
+    spec:
+      containers:
+      - name: django-hello
+        image: django-hello:v3
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
