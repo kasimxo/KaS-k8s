@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Dashboard</title>
+</head>
+<body>
+    <h1>Network Metrics</h1>
+
+    <h2>Global Latency</h2>
+    <p>{{ data.global_latency_avg }} ms</p>
+
+    <h2>Top failing antennas</h2>
+    <ul>
+        {% for antenna in data.top_failing_antennas %}
+            <li>{{ antenna.id }} → {{ antenna.loss }}% loss</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
