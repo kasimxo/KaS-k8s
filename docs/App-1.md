@@ -22,13 +22,13 @@ Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs
 
 2. Comandos
 
+*Nota: Todos los comandos (a menos que se especifique lo contrario) se utilizan en powershell ejecutándose como administrador.*
+
     2.1 Para ejecutar minikube, utiliza el comando 
 
     ```
     minikube start
     ``` 
-
-    desde powershell como administrador.
 
     *Nota*: Para poder ejecutar minikube (lanzarlo) tendrás que tener docker ejecutándose
 

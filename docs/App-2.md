@@ -13,29 +13,53 @@ Además de los detallados en el archivo README previo, necesitarás tener instal
 1. Aplicación Django
 
     1.1 Crear venv
-    > python -m venv venv
+    
+    ```
+    python -m venv venv
+    ```
     
     1.2 Activar venv:
-    > .\venv\Scripts\activate
+    
+    ```
+    .\venv\Scripts\activate
+    ```
     
     1.3 Install django
-    > pip install django
+    
+    ```
+    pip install django
+    ```
     
     1.4 Creamos la aplicación base de django: 
-    > django-admin startproject hello .
+    
+    ```
+    django-admin startproject hello .
+    ```
     
     1.5 Modificar urls.py e incluir: 
-    > path("", lambda request: HttpResponse('Hello, World!'))
+    
+    ```
+    path("", lambda request: HttpResponse('Hello, World!'))
+    ```
     
     1.6 Modificamos settings: 
-    > ALLOWED_HOSTS = ["*"]
+    
+    ```
+    ALLOWED_HOSTS = ["*"]
+    ```
     
     1.7 Ejecutar migraciones (técnicamente se puede incluir en el archivo Dockerfile, pero me daba problemas)
-    > python manage.py makemigrations
-    > python manage.py migrate
+    
+    ```
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
     
     1.8 Crear archivo requirements.txt:
-    > pip freeze > requirements.txt
+    
+    ```
+    pip freeze > requirements.txt
+    ```
 
 2. Archivos k8s
 
@@ -82,11 +106,16 @@ Además de los detallados en el archivo README previo, necesitarás tener instal
 
 3. Comandos
 
-    3.1 Hacer build de la imagen
-    Para utilizar docker a través de minikube y que pueda ver las imágenes
-    > minikube docker-env | Invoke-Expression
+*Nota: Todos los comandos (a menos que se especifique lo contrario) se utilizan en powershell ejecutándose como administrador.*
 
-    > docker build --no-cache -t < image name > .
+    3.1 Hacer build de la imagen
+
+    Para utilizar docker a través de minikube y que pueda ver las imágenes
+    
+    ```
+    minikube docker-env | Invoke-Expression
+    docker build --no-cache -t < image name > .
+    ```
 
     > <b>Importante I</b>
     >
@@ -100,27 +129,44 @@ Además de los detallados en el archivo README previo, necesitarás tener instal
     >
     > El argumento --no-cache no es estrictamente necesario, pero en mi caso, lo utilizaba para asegurarme de que no se estuviera reutilizando una capa que se hubiera aplicado mal en un primer momento
 
+    > <b>Importante IV</b>
+    >
+    > Existe una alternativa a estos comandos, que utiliza minikube directamente para hacer build de la imagen. No lo descubrí hasta más adelante:
+    
+    ```
+    minikube image build -t dashboard:v1 .
+    ```
+
     Puedes utilizar el comando docker images para ver que realmente se ha construido tu imagen correctamente
 
     3.2 Archivos deployment.yaml y service.yaml
 
     En este punto los vamos a ejecutar con kubectl apply:
-    > kubectl apply -f deployment.yaml
-
-    > kubectl apply -f service.yaml
+    
+    ```
+    kubectl apply -f deployment.yaml
+    kubectl apply -f service.yaml
+    ```
 
     Puedes revisar ambos con los correspondientes comandos:
-    > kubectl get pods
-
-    > kubectl get svc
+    
+    ```
+    kubectl get pods
+    kubectl get svc
+    ```
 
     3.3 Debug a través de logs
     Algo que me resultó muy útil fue ver los logs de la imagen. Para ello puedes utilizar los siguientes comandos:
-    > kubectl get pods
-
-    > kubectl logs -f < nombre del pod >
+    
+    ```
+    kubectl get pods
+    kubectl logs -f < nombre del pod >
+    ```
 
     3.4 Reiniciar imagen/continer/pod
 
     Si en algún momento has necesitado cambiar archivos de configuración (por ejemplo, si en un primer momento has comentido algún error con la configuración), necesitarás volver a hacer build.
-    > kubectl rollout restart deployment < nombre del deployment (deployment metadata name) >
+    
+    ```
+    kubectl rollout restart deployment < nombre del deployment (deployment metadata name) >
+    ```
