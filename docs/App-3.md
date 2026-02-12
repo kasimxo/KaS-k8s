@@ -2,9 +2,13 @@
 
 En este proyecto se utiliza un sistema de varios pods para supervisar el rendimiento de una red de comunicación.
 
+## Requisitos
+
+Los mismos del archivo README base además de Python y conocimientos sobre Django.
+
 ## Aquitectura
 
-- Simulator: Pod encargado de producir mensajes simulando ser una red de antenas de comunicación. Para ello utiliza el nombre de pod como id único, así se puede replicar todas las veces que se quiera y cada una de las réplicas tiene un id distinto.
+- Simulator: Pod encargado de producir mensajes simulando ser una antena de una red de antenas de comunicación. Para ello utiliza el nombre de pod como id único, así se puede replicar todas las veces que se quiera y cada una de las réplicas tiene un id distinto.
 
 - Broker: Redis. Funciona como broker de mensajes
 
@@ -13,7 +17,7 @@ En este proyecto se utiliza un sistema de varios pods para supervisar el rendimi
 - Dashboard: Pod encargado de la visualización de estos datos a través del navegador. Es el único que se comunica con el usuario a través del navegador.
 
 
-## Dashboard
+## 1. Dashboard
 
 Creamos un venv
 Activamos el venv
@@ -36,3 +40,5 @@ Comandos de powershell:
 > cd ..
 > kubectl apply -f .\k8s\dashboard.yaml
 > minikube service dashboard-service
+
+Con todo esto ya tenemos la 1ª capa en funcionamiento.

@@ -82,41 +82,45 @@ Además de los detallados en el archivo README previo, necesitarás tener instal
 
 3. Comandos
 
-3.1 Hacer build de la imagen
-Para utilizar docker a través de minikube y que pueda ver las imágenes
-> minikube docker-env | Invoke-Expression
-> docker build --no-cache -t < image name > .
+    3.1 Hacer build de la imagen
+    Para utilizar docker a través de minikube y que pueda ver las imágenes
+    > minikube docker-env | Invoke-Expression
+    
+    > docker build --no-cache -t < image name > .
 
-> <b>Importante I</b>
->
-> Te recomiendo, en la medida de lo posible, que lances ese comando desde la ruta del proyecto (aunque no es estrictamente necesario, podrías detallar la ruta absoluta)
+    > <b>Importante I</b>
+    >
+    > Te recomiendo, en la medida de lo posible, que lances ese comando desde la ruta del proyecto (aunque no es estrictamente necesario, podrías detallar la ruta absoluta)
 
-> <b>Importante II</b>
->
-> ¿Te acuerdas cuando mencioné lo de nombrar el archivo Dockerfile exactamente así? Aquí es donde te dará un fallo si no lo encuentra
+    > <b>Importante II</b>
+    >
+    > ¿Te acuerdas cuando mencioné lo de nombrar el archivo Dockerfile exactamente así? Aquí es donde te dará un fallo si no lo encuentra
 
-> <b>Importante III</b>
->
-> El argumento --no-cache no es estrictamente necesario, pero en mi caso, lo utilizaba para asegurarme de que no se estuviera reutilizando una capa que se hubiera aplicado mal en un primer momento
+    > <b>Importante III</b>
+    >
+    > El argumento --no-cache no es estrictamente necesario, pero en mi caso, lo utilizaba para asegurarme de que no se estuviera reutilizando una capa que se hubiera aplicado mal en un primer momento
 
-Puedes utilizar el comando docker images para ver que realmente se ha construido tu imagen correctamente
+    Puedes utilizar el comando docker images para ver que realmente se ha construido tu imagen correctamente
 
-3.2 Archivos deployment.yaml y service.yaml
+    3.2 Archivos deployment.yaml y service.yaml
 
-En este punto los vamos a ejecutar con kubectl apply:
-> kubectl apply -f deployment.yaml
-> kubectl apply -f service.yaml
+    En este punto los vamos a ejecutar con kubectl apply:
+    > kubectl apply -f deployment.yaml
 
-Puedes revisar ambos con los correspondientes comandos:
-> kubectl get pods
-> kubectl get svc
+    > kubectl apply -f service.yaml
 
-3.3 Debug a través de logs
-Algo que me resultó muy útil fue ver los logs de la imagen. Para ello puedes utilizar los siguientes comandos:
-> kubectl get pods
-> kubectl logs -f < nombre del pod >
+    Puedes revisar ambos con los correspondientes comandos:
+    > kubectl get pods
 
-3.4 Reiniciar imagen/continer/pod
+    > kubectl get svc
 
-Si en algún momento has necesitado cambiar archivos de configuración (por ejemplo, si en un primer momento has comentido algún error con la configuración), necesitarás volver a hacer build.
- > kubectl rollout restart deployment < nombre del deployment (deployment metadata name) >
+    3.3 Debug a través de logs
+    Algo que me resultó muy útil fue ver los logs de la imagen. Para ello puedes utilizar los siguientes comandos:
+    > kubectl get pods
+
+    > kubectl logs -f < nombre del pod >
+
+    3.4 Reiniciar imagen/continer/pod
+
+    Si en algún momento has necesitado cambiar archivos de configuración (por ejemplo, si en un primer momento has comentido algún error con la configuración), necesitarás volver a hacer build.
+    > kubectl rollout restart deployment < nombre del deployment (deployment metadata name) >
