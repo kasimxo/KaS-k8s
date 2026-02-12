@@ -4,25 +4,25 @@ Este documento trata de cómo hacer el set-up necesario para tener un pod con un
 
 En este caso, utilizamos una imagen ya configurada a modo de hello world para evitar problemas a la hora de configurar el dockerfile, o archivos de configuración como deployment.yaml o service.yaml.
 
-## 1. Requisitos
+## Requisitos
 
 Los detallados en el README de este repositorio. No vas a necesitar nada adicional.
 
-## 2. Guía:
+## Guía
 
 Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs/tutorials/hello-minikube/
 
-## 3. Configuración de Docker Desktop
+## Configuración de Docker Desktop
 
-    3.1 En Configuración > General, asegurate de que está marcada la opción "Use the WSL 2 based engine"
+    1 En Configuración > General, asegurate de que está marcada la opción "Use the WSL 2 based engine"
 
-    3.2 En Configuración > Resources > WSL integration asegurate de que está activa la opción "Enable integration with my default WSL distro" y marca también la distro que tengas configurada. Ejemplo, Ubuntu.
+    2 En Configuración > Resources > WSL integration asegurate de que está activa la opción "Enable integration with my default WSL distro" y marca también la distro que tengas configurada. Ejemplo, Ubuntu.
 
-    3.3 Revisa que tengas Docker en la variable de entorno PATH
+    3 Revisa que tengas Docker en la variable de entorno PATH
 
-## 4. Pasos
+## Pasos
 
-    4.1 Para ejecutar minikube, utiliza el comando 
+    1 Para ejecutar minikube, utiliza el comando 
 
     > minikube start 
 
@@ -30,20 +30,20 @@ Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs
 
     *Nota*: Para poder ejecutar minikube (lanzarlo) tendrás que tener docker ejecutándose
 
-    4.2 Puedes revisar que se esté ejecutando con 
+    2 Puedes revisar que se esté ejecutando con 
     > minikube status
 
-    4.3 Y para lanzar el dashboard (lo abrirá en el navegador)
+    3 Y para lanzar el dashboard (lo abrirá en el navegador)
     > minikube dashboard 
 
     Está bien para ver toda la información de forma visual, aunque en otros ejercicios recuperaremos esta misma información a través de comandos como kubectl logs -f < nombre del pod >
 
-    4.4 Generar una imagen de prueba: 
+    4 Generar una imagen de prueba: 
     > kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.53 -- /agnhost netexec --http-port=8080
 
     Aquí estamos creando un deployment con una imagen de un repositorio. (Podrás verla desde el dashboard o verificar su estado con el comando kubectl get deployments)
 
-    4.5 Exponer la imagen a través de un servicio
+    5 Exponer la imagen a través de un servicio
     > <b>Create a Service</b>
     > 
     > By default, the Pod is only accessible by its internal IP  address within the Kubernetes cluster. To make the hello-node Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service."
@@ -53,7 +53,7 @@ Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs
 
     En este punto ya deberíamos tener todo listo y se nos abrirá en el navegador.
 
-    4.6 Cerrar y eliminar pods
+    6 Cerrar y eliminar pods
 
     > kubectl delete service hello-node
     
