@@ -72,7 +72,7 @@ Cada una de las capas se divide en dos secciones, siendo la primera la pura cons
 
     1.13 Creamos archivo Dockerfile en la raíz del proyecto
 
-    Puedes ver el contenido del archivo [aquí](../proyects/App-3/network-monitoring/dashboard/Dockerfile).
+    Puedes ver el contenido del archivo [aquí](../projects/App-3/network-monitoring/dashboard/Dockerfile).
 
     1.14 Creamos archivo dashboard.yaml en el directorio k8s: En este archivo hemos incluido el bloque de deployment y el del service, separados por ---
 
@@ -124,7 +124,7 @@ Con todo esto ya tenemos la 1ª capa en funcionamiento.
 
     1.6 Creamos el estado
 
-    Creamos el archivo state.py, puedes ver el contenido [aquí](../proyects/App-3/network-monitoring/analytics/app/state.py).
+    Creamos el archivo state.py, puedes ver el contenido [aquí](../projects/App-3/network-monitoring/analytics/app/state.py).
 
     Estos son los datos que compartirán pyspark y fastapi para, por un lado, actualizar los datos a través de las analíticas y por otro, servir esos datos en respuesta a las peticiones recibidas.
 
@@ -132,13 +132,13 @@ Con todo esto ya tenemos la 1ª capa en funcionamiento.
 
     1.7 Creamos el job de spark
 
-    Creamos el archivo spark_job.py, puedes ver el contenido [aquí](../proyects/App-3/network-monitoring/analytics/app/spark_job.py).
+    Creamos el archivo spark_job.py, puedes ver el contenido [aquí](../projects/App-3/network-monitoring/analytics/app/spark_job.py).
 
     Este será el trabajo encargado de ir actualizando la información. Puedes comenzar creando un pequeño mock de los datos.
 
     1.8 Creamos la api
 
-    Creamos el archivo main.py, puedes ver el contenido [aquí](../proyects/App-3/network-monitoring/analytics/app/main.py).
+    Creamos el archivo main.py, puedes ver el contenido [aquí](../projects/App-3/network-monitoring/analytics/app/main.py).
 
     Esta es la api que servirá los datos a partir de las peticiones recibidas. Podremos agregar más endpoints en el futuro, pero por el momento basta con exponer uno ("/metrics") que envíe los datos actualizados.
 
@@ -155,7 +155,7 @@ Con todo esto ya tenemos la 1ª capa en funcionamiento.
 
     1.9 Archivo Dockerfile
 
-    Creamos el archivo Dockerfile, puedes ver el contenido [aquí](../proyects/App-3/network-monitoring/analytics/Dockerfile).
+    Creamos el archivo Dockerfile, puedes ver el contenido [aquí](../projects/App-3/network-monitoring/analytics/Dockerfile).
 
     > <b>Importante</b>
     >
@@ -163,7 +163,7 @@ Con todo esto ya tenemos la 1ª capa en funcionamiento.
 
     1.10 Archivo analytics.yaml
 
-    Creamos el archivo analytics.yaml dentro del directorio /k8s/, puedes ver el contenido [aquí](../proyects/App-3/network-monitoring/k8s/analytics.yaml).
+    Creamos el archivo analytics.yaml dentro del directorio /k8s/, puedes ver el contenido [aquí](../projects/App-3/network-monitoring/k8s/analytics.yaml).
 
     De nuevo, este archivo contiene la información necesaria tanto para el depoyment como para el service. Nuevamente recomiendo utilizar el versionado de las imágenes para tener un mayor control sobre ellas (utiliza el sufijo :vXX en el nombre de la imagen).
 
