@@ -194,6 +194,26 @@ Con todo esto ya tenemos la 1ª capa en funcionamiento.
     minikube service dashboard-service
     ```
 
+### Dashboard + Analytics
+
+En este punto ya tenemos la capa de presentación de datos (dashboard) y la de ingesta, tratamiento y servicio de datos creadas y correctamente configuradas. 
+
+Si lo has hecho todo bien, deberían estar funcionando correctamente, pero, por si acaso, revisa los siguientes puntos:
+
+1. Que ambos pods están en funcionamiento
+
+```
+kubectl get pods
+```
+
+2. Que ambos servicios están en funcionamiento
+
+```
+kubectl get svc
+```
+
+3. Que tienes los archivos dashboard.yaml y analytics.yaml correctamente configurados
+
 ### Broker
 
 ### Simulator
