@@ -85,7 +85,7 @@ Además de los detallados en el archivo README previo, necesitarás tener instal
     3.1 Hacer build de la imagen
     Para utilizar docker a través de minikube y que pueda ver las imágenes
     > minikube docker-env | Invoke-Expression
-    
+
     > docker build --no-cache -t < image name > .
 
     > <b>Importante I</b>

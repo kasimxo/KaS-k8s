@@ -15,12 +15,15 @@ Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs
 ## 3. Configuración de Docker Desktop
 
     3.1 En Configuración > General, asegurate de que está marcada la opción "Use the WSL 2 based engine"
-    3.2. En Configuración > Resources > WSL integration asegurate de que está activa la opción "Enable integration with my default WSL distro" y marca también la distro que tengas configurada. Ejemplo, Ubuntu.
+
+    3.2 En Configuración > Resources > WSL integration asegurate de que está activa la opción "Enable integration with my default WSL distro" y marca también la distro que tengas configurada. Ejemplo, Ubuntu.
+
     3.3 Revisa que tengas Docker en la variable de entorno PATH
 
 ## 4. Pasos
 
     4.1 Para ejecutar minikube, utiliza el comando 
+
     > minikube start 
 
     desde powershell como administrador.
