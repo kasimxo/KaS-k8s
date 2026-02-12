@@ -24,22 +24,33 @@ Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs
 
     2.1 Para ejecutar minikube, utiliza el comando 
 
-    > minikube start 
+    ```
+    minikube start
+    ``` 
 
     desde powershell como administrador.
 
     *Nota*: Para poder ejecutar minikube (lanzarlo) tendrás que tener docker ejecutándose
 
     2.2 Puedes revisar que se esté ejecutando con 
-    > minikube status
+    
+    ```
+    minikube status
+    ```
 
     2.3 Y para lanzar el dashboard (lo abrirá en el navegador)
-    > minikube dashboard 
+    
+    ```
+    minikube dashboard 
+    ```
 
-    Está bien para ver toda la información de forma visual, aunque en otros ejercicios recuperaremos esta misma información a través de comandos como kubectl logs -f < nombre del pod >
+    Está bien para ver toda la información de forma visual, aunque en otros ejercicios recuperaremos esta misma información a través de comandos como 'kubectl logs -f < nombre del pod >'
 
     2.4 Generar una imagen de prueba: 
-    > kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.53 -- /agnhost netexec --http-port=8080
+    
+    ```
+    kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.53 -- /agnhost netexec --http-port=8080
+    ```
 
     Aquí estamos creando un deployment con una imagen de un repositorio. (Podrás verla desde el dashboard o verificar su estado con el comando kubectl get deployments)
 
@@ -49,14 +60,17 @@ Puedes encontrar la guía original paso a paso aquí: https://kubernetes.io/docs
     > By default, the Pod is only accessible by its internal IP  address within the Kubernetes cluster. To make the hello-node Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service."
 
     Para esto puedes utilizar:
-    > kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+    
+    ```
+    kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+    ```
 
     En este punto ya deberíamos tener todo listo y se nos abrirá en el navegador.
 
     2.6 Cerrar y eliminar pods
 
-    > kubectl delete service hello-node
-    
-    > kubectl delete deployment hello-node
-
-    > minikube stop
+    ```
+    kubectl delete service hello-node
+    kubectl delete deployment hello-node
+    minikube stop
+    ```
