@@ -8,7 +8,7 @@ A continuación se detallan todas las configuraciones e instalaciones necesarias
 - WSL: Asegurate de que tienes WSL correctamente configurado en tu pc y listo para utilizar
 - Minikube: Puedes descargarlo e instalarlo a través del siguiente enlace https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download 
 
-También necesitarás conocimientos sobre Python y Django.
+En cada uno de los proyectos se detallan los requerimientos adicionales, como conocimientos básicos sobre Python, Django, FastAPI, Redis...
 
 ## Proyectos
 

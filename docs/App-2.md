@@ -170,3 +170,11 @@ Además de los detallados en el archivo README previo, necesitarás tener instal
     ```
     kubectl rollout restart deployment < nombre del deployment (deployment metadata name) >
     ```
+
+    3.5 Abrir en el navegador
+
+    Para poder ver el navegador el servicio que has creado sin tener que hacer port forwarding o ver ips raras, puedes utilizar el siguiente comando:
+
+    ```
+    minikube service "nombre del servicio"
+    ```

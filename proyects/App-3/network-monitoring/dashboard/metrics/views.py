@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 def dashboard(request):
     try:
-        response = requests.get("http://processor-service:8000/metrics", timeout=1)
+        response = requests.get("http://analytics-service:8000/metrics", timeout=1)
         data = response.json()
     except Exception:
         # Datos mock si el procesador no está disponible
@@ -13,6 +13,7 @@ def dashboard(request):
                 {"id": "ANT-1", "loss": 12},
                 {"id": "ANT-3", "loss": 9},
             ],
+            "fake": "Could not connect with service"
         }
 
     return render(request, "dashboard.html", {"data": data})
