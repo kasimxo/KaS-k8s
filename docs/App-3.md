@@ -265,3 +265,82 @@ Para este servicio utilizamos redis ya que cumple perfectamente con las necesida
     ```
 
 ### Simulator
+
+Este es el servicio encargado de generar logs, simulando ser antenas de comunicación de una red. Envían estos datos al broker.
+
+1. Simulator
+
+    1.1 Crear entorno virtual
+
+    ```
+    python -m venv venv
+    ```
+
+    1.2 Activar entorno virtual
+
+    ```
+    .\venve\Scripts\activate
+    ```
+
+    1.3 Instalar redis
+
+    ```
+    pip install redis
+    ```
+
+    1.4 Congelar dependencias
+
+    ```
+    pip freeze > requirements.txt
+    ```
+
+    1.5 Crear script de simulación
+
+        - Creamos el directorio app
+        - Creamos el archivo simulator.py dentro del directorio recién creado
+
+    Puedes ver el contenido del archivo simulator.py [aquí](../projects/App-3/network-monitoring/simulator/app/simulator.py).
+
+    *Nota: En este script recuperamos el id del contenedor para utilizarlo como id de la antena a través del paquete os para recuperar la variable del sistema correspondiente.*
+
+    1.6 Crear archivo Dockerfile
+
+    Creamos el archivo Dockerfile en la raíz del proyecto simulator, puedes ver el contenido [aquí](../projects/App-3/network-monitoring/simulator/Dockerfile).
+
+    1.7 Crear archivo simulator.yaml
+
+    Creamos el archivo simulator.yaml dentro del directorio /k8s/, puedes ver el contenido [aquí](../projects/App-3/network-monitoring/k8s/simulator.yaml).
+
+    *Nota I: Este archivo simulator.yaml no confiugra un simulator-service, si no que únicamente se encarga del deployment. Esto es porque no se necesita un service para esta capa, ya que únicamente enviará datos.*
+
+    *Nota II: Si te fijas, en este archivo se establece el parámetro replicas: 3 (puedes modificarlos si quieres). Este es el parámetro que modifica la cantidad de antenas que tendrá nuestra red publicando datos.*
+
+2. Commands
+
+    2.1 Construir la imagen
+
+    ```
+    minikube image build -t simulator:v1 .
+    ```
+
+    2.2 Aplicar el archivo yaml
+
+    ```
+    kubectl apply -f simulator.yaml
+    ```
+
+    2.3 Verificar que está funcionando
+
+    Para esto, vamos a ver los logs dentro de redis.
+
+    ```
+    kubectl exec -it < nombre del pod de redis > -- redis-cli
+    ```
+
+    Una vez estemos dentro de redis, mostramos mensajes recibidos con el comando:
+
+    ```
+    XRANGE antenna_stream - +
+    ```
+
+    Esto debería mostrar una lista de logs recibidos por las antenas
