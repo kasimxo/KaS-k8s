@@ -28,6 +28,8 @@ Cada una de las capas se divide en dos secciones, siendo la primera la pura cons
 
 ### Dashboard
 
+Este va a ser el servicio encargado de la visualización de datos para el usuario. Es el único que queda expuesto al usuario y se comunica únicamente con el servicio de analíticas.
+
 1. Aplicación Django
 
     1.1 Creamos un venv
@@ -89,6 +91,8 @@ Cada una de las capas se divide en dos secciones, siendo la primera la pura cons
 Con todo esto ya tenemos la 1ª capa en funcionamiento.
 
 ### Analytics
+
+Este es el servicio que se encarga del procesamiento de los datos (logs) para la generación de analíticas. Se comunica tanto con el broker como con el dashboard.
 
 1. Aplicación de ingesta y analítica de datos
 
@@ -215,5 +219,49 @@ kubectl get svc
 3. Que tienes los archivos dashboard.yaml y analytics.yaml correctamente configurados
 
 ### Broker
+
+Este es el servicio que se encarga de recibir todos los datos de los productores, almacenarlos temporalmente y entregarlos a los consumidores. Se comunica (recibe datos) de todos los simuladores/productores y sirve datos al servicio de analytics. Funciona por tanto de intermediario.
+
+Para este servicio utilizamos redis ya que cumple perfectamente con las necesidades
+
+1. Redis
+
+    1.1 Archivo Dockerfile
+
+    Creamos el archivo Dockerfile redis.yaml en /k8s/, puedes ver el contenido del archivo [aquí](../projects/App-3/network-monitoring/k8s/redis.yaml).
+
+    En este caso no necesitamos crear una aplicación propia ni configurar parámetros adicionales, podemos utilizar la imagen ligera de redis.
+
+2. Comandos
+
+    2.1 Aplicar redis.yaml
+
+    ```
+    kubectl apply -f redis.yaml
+    ```
+
+    Con esto ya deberías tener redis desplegado y el servicio corriendo.
+
+    2.2 Verificar el servicio redis
+
+    Para verificar el servicio, primero puedes comprobar que tanto la imagen como el servicio están en ejecución:
+
+    ```
+    kubectl get pods # Debería aparecer el pod de redis con estado RUNNING
+    kubectl get svc # Debería aparecer el servicio de redis
+    ```
+
+    Puedes también conectarte directamente a redis-service y hacer una prueba
+
+    ```
+    # Para conectarse directamente al pod de redis
+    kubectl exec -it < nombre imagen redis > -- redis-cli
+    # Para ver que responde
+    PING # Debería responder "PONG"
+    # Para guardar un valor
+    SET test "hola" 
+    # Para recuperar un valor
+    GET test # Debería responder hola 
+    ```
 
 ### Simulator
