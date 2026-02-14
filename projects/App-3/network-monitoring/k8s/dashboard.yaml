@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: dashboard
-        image: dashboard:v2
+        image: dashboard:v3
         imagePullPolicy: Never
         ports:
         - containerPort: 8000

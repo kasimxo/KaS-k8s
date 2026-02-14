@@ -6,16 +6,28 @@
 <body>
     <h1>Network Metrics</h1>
 
-    <h2>Global Latency</h2>
-    <p>{{ data.global_latency_avg }} ms</p>
+    {% if data.service_stats %}
+        <h2>Service Statistics</h2>
+        <ul>
+            <li>Total Packets: {{ data.service_stats.total_packets }}</li>
+            <li>Total Loss: {{ data.service_stats.total_loss }}</li>
+            <li>Loss Rate: {{ data.service_stats.loss_rate }}%</li>
+            <li>Average Latency: {{ data.service_stats.avg_latency }} ms</li>
+            <li>Active Antennas: {{ data.service_stats.active_antennas }}</li>
+        </ul>
+    {% endif %}
 
-    <h2>Top failing antennas</h2>
-    <ul>
-        {% for antenna in data.top_failing_antennas %}
-            <li>{{ antenna.id }} → {{ antenna.loss }}% loss</li>
-        {% endfor %}
-    </ul>
+    {% if data.error %}
+        <p style="color: red;">Error: {{ data.error }}</p>
+    {% endif %}
 
-    <p>Fake data: {{ data.fake }}</p>
+<script>
+    const data = JSON.parse(
+        document.getElementById("analytics-data").textContent
+    );
+
+    console.log("Data received from analytics:", data);
+</script>
+
 </body>
 </html>

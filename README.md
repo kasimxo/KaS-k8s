@@ -1,5 +1,7 @@
 El propósito de este proyecto es hacer una exploración a las posibilidades de kubernetes a través de varios proyectos.
 
+Cada uno amplía sobre el anterior, por lo que si estás interesado en aprender sobre estas tecnologías, te recomiendo que los veas uno a uno. Si por el contrario buscas un ejemplo de qué permiten, puedes ir directamente a los últimos proyectos, que son los más completos.
+
 ## Requisitos previos
 
 A continuación se detallan todas las configuraciones e instalaciones necesarias (las que al menos yo he necesitado) para poder realizar todos estos proyecto:

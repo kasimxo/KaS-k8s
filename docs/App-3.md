@@ -10,6 +10,8 @@ Los mismos del archivo README base además de Python y conocimientos sobre Djang
 
 ## Aquitectura
 
+![Diagrama de arquitectura del proyecto](./static/app-3-img-2.png)
+
 - Simulator: Pod encargado de producir mensajes simulando ser una antena de una red de antenas de comunicación. Para ello utiliza el nombre de pod como id único, así se puede replicar todas las veces que se quiera y cada una de las réplicas tiene un id distinto.
 
 - Broker: Redis. Funciona como broker de mensajes
@@ -296,8 +298,8 @@ Este es el servicio encargado de generar logs, simulando ser antenas de comunica
 
     1.5 Crear script de simulación
 
-        - Creamos el directorio app
-        - Creamos el archivo simulator.py dentro del directorio recién creado
+    - Creamos el directorio app
+    - Creamos el archivo simulator.py dentro del directorio recién creado
 
     Puedes ver el contenido del archivo simulator.py [aquí](../projects/App-3/network-monitoring/simulator/app/simulator.py).
 
@@ -344,3 +346,13 @@ Este es el servicio encargado de generar logs, simulando ser antenas de comunica
     ```
 
     Esto debería mostrar una lista de logs recibidos por las antenas
+
+### Últimos ajustes
+
+En este punto todos los servicios deberían estar funcionando correctamente por separado, pero faltan algunos cambios para que el sistema verdaderamente funcione en su conjunto. Para ello, deberemos retocar el servicio de analytics para conectarlo a redis, modificar las operaciones que realiza y enviar los datos correctos en lugar de un mock up. También retocaremos el servicio dashboard para mejorar el UI/UX y agregar más información.
+
+El resultado final debería permitirte ver algo similar a esto en el navegador:
+
+![Visualización de métricas en el navegador: dashboard-service](./static/app-3-img-1.png)
+
+Al recargar la página, los datos se actualizarán a los más recientes de analytics.

@@ -1,19 +1,27 @@
+import logging
 import requests
 from django.shortcuts import render
 
+logger = logging.getLogger(__name__)
+
 def dashboard(request):
     try:
-        response = requests.get("http://analytics-service:8000/metrics", timeout=1)
+        response = requests.get(
+            "http://analytics-service:8000/metrics",
+            timeout=1
+        )
+
+        logger.info("Analytics response status: %s", response.status_code)
+
         data = response.json()
-    except Exception:
-        # Datos mock si el procesador no está disponible
+
+        logger.info("Analytics payload: %s", data)
+
+    except Exception as e:
+        logger.exception("Error fetching metrics from analytics-service")
+
         data = {
-            "global_latency_avg": 42,
-            "top_failing_antennas": [
-                {"id": "ANT-1", "loss": 12},
-                {"id": "ANT-3", "loss": 9},
-            ],
-            "fake": "Could not connect with service"
+            "error": "Could not fetch data from server"
         }
 
     return render(request, "dashboard.html", {"data": data})
