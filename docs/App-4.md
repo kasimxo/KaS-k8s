@@ -12,4 +12,20 @@ Helm permite la centralización de la configuración de todos los servicios. Est
 
 Los mismos del archivo README base además de conocimientos básicos (a alto nivel) sobre Helm.
 
+## Arquitectura
+
+La organización de los archivos Helm va a tener un chart para cada servicio y un chart principal que los orquesta.
+
 ## Guía
+
+Aquí se detalla cómo migrar cada servicio de su archivo yaml a su correspondiente estructura Helm. La transición de cada servicio es más sencilla de lo que aparenta y, la orquestación final, no tiene demasiada complicación si has integradado todos los servicios con Helm.
+
+1. Dashboard
+
+2. Analytics
+
+3. Redis
+
+4. Simulator
+
+5. Orquestador

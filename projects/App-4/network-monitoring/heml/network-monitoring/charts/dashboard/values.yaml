@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: dashboard
+  tag: v3
+  pullPolicy: Never
+
+service:
+  type: NodePort
+  port: 8000
+  targetPort: 8000
+  nodePort: 30081
+  

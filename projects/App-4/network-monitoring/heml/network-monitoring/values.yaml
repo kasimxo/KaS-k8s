@@ -1,0 +1,21 @@
+namespace: network-monitoring
+dashboard:
+  replicaCount: 1
+  image:
+    repository: dashboard
+    tag: latest
+
+analytics:
+  replicaCount: 1
+  image:
+    repository: analytics
+    tag: latest
+
+simulator:
+  replicaCount: 3
+  image:
+    repository: simulator
+    tag: latest
+
+redis:
+  enabled: true

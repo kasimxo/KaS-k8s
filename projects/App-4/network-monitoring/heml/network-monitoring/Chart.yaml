@@ -1,0 +1,21 @@
+apiVersion: v2
+name: network-monitoring
+description: IoT network monitoring platform
+version: 0.1.0
+
+dependencies:
+  - name: dashboard
+    version: 0.1.0
+    repository: "file://charts/dashboard"
+
+  - name: analytics
+    version: 0.1.0
+    repository: "file://charts/analytics"
+
+  - name: simulator
+    version: 0.1.0
+    repository: "file://charts/simulator"
+
+  - name: redis
+    version: 0.1.0
+    repository: "file://charts/redis"
