@@ -8,7 +8,8 @@ A continuación se detallan todas las configuraciones e instalaciones necesarias
 
 - Docker: Si estas utilizando Windows, debes instalar Docker Desktop y asegurarte de configurarlo de forma que utilice WSL. *Nota: Puedes conseguir Docker Desktop a través de la App Store de Windows si la página está caída.*
 - WSL: Asegurate de que tienes WSL correctamente configurado en tu pc y listo para utilizar
-- Minikube: Puedes descargarlo e instalarlo a través del siguiente enlace https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download 
+- Minikube: Puedes descargarlo e instalarlo a través del siguiente enlace [aquí](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
+- Helm: Aunque no es necesario en los primeros proyectos, en clusters complejos lo utilizo para simplificar la gestión de los pods. Puedes descargarlo e instalarlo a través del siguiente enlace [aquí](https://helm.sh/docs/intro/install)
 
 En cada uno de los proyectos se detallan los requerimientos adicionales, como conocimientos básicos sobre Python, Django, FastAPI, Redis...
 

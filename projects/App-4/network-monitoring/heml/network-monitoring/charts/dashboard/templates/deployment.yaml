@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dashboard
+  name: {{ include "dashboard.fullname" . }}
+  labels:
+    {{- include "dashboard.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: dashboard
+      app: {{ include "dashboard.name" . }}
   template:
     metadata:
       labels:
-        app: dashboard
+        app: {{ include "dashboard.name" . }}
     spec:
       containers:
-      - name: dashboard
+      - name: {{ include "dashboard.name" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
