@@ -63,8 +63,43 @@ Aquí se detalla cómo migrar cada servicio de su archivo yaml a su correspondie
     > <b>INSTALLATION FAILED: Service "dashboard-dashboard" is invalid: spec.ports[0].nodePort: Invalid value: 30081: provided port is already allocated</b>
     >
     > Self explanatory. Como ya tenemos este puerto ocupado con el otro servicio, entra en conflicto. Aquí hay dos soluciones posibles:
-    > Borrar el actual para poder hacer la instalación del Chart
     > Modificar el puerto. Puedes cambiar la configuración del values.yaml o pasar el parámetro en el momento de hacer install
+    > Borrar el actual para poder hacer la instalación del Chart
+
+    > <b>Importante:</b>
+    >
+    > En mi caso, al querer borrar el actual, hice varias cosas: 
+    > Borrar el service 
+    > Borrar el pod 
+    > Borrar el deployment 
+    > Borrar el secreto que helm genera para saber qué aplicaciones ha instalado ya. 
+    > Después, pude ejecutar el install sin problema. Estos son los comandos:
+
+    ```
+    kubectl delete service < nombre del servicio >
+    kubectl delete pod < nombre del pod >
+    kubectl delete deployment < nombre de la app >
+    kubectl get secrets --all-namespaces # Para ver todos los secretos
+    kubectl delete secret < nombre del secreto > -n < nombre del namespace al que pertenece el secreto >
+    # El secreto tendrá un nombre similar a: sh.helm.release.v1.dashboard.v1
+    ```
+
+    2.4 Verificar el servicio
+
+    Podemos ver que se ha instalado correctamente con:
+
+    ```
+    kubectl get pods
+    kubectl get svc
+    ```
+
+    Donde nos aparecerá el pod y servicio levantados.
+
+    Y para conectarnos directamente a través del navegador:
+
+    ```
+    minikube service < nombre del servicio >
+    ```
 
 ### Analytics
 
