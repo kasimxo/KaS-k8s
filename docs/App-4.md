@@ -14,7 +14,7 @@ Los mismos del archivo README base además de conocimientos básicos sobre Helm 
 
 ## Arquitectura
 
-La organización de los archivos Helm va a tener un chart para cada servicio y un chart principal que los orquesta.
+La organización de los archivos Helm va a tener un chart para cada servicio y un chart principal que los orquesta. Se reemplaza la carpeta k8s/ por helm/network-monitoring/ que incluye tanto los Charts correspondientes a cada servicio como el Chart que toma la función de orquestación.
 
 ## Guía
 
@@ -24,7 +24,13 @@ Aquí se detalla cómo migrar cada servicio de su archivo yaml a su correspondie
 
 1. Guía 
 
+    1.1 Crear archivos deployment y service
 
+    Dividimos el contenido del archivo dashboard.yaml a los archivo depoplyment.yaml y service.yaml. Estos archivos quedan dentro del Chart de dashboard/templates. Puedes ver los archivos [aquí](../projects/App-4/network-monitoring/heml/network-monitoring/charts/dashboard/templates/).
+
+    1.2 Archivo Chart
+
+    Creamos el archivo Chart.yaml correspondiente a dashboard. Puedes ver su contenido [aquí](../projects/App-4/network-monitoring/heml/network-monitoring/Chart.yaml).
 
 2. Comandos
 

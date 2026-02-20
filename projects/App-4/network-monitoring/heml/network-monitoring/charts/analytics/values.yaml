@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: analytics
+  tag: v2
+  pullPolicy: Never
+  env:
+    REDIS_HOST_KEY: REDIS_HOST
+    REDIS_HOST_VALUE: "redis-service"
+    REDIS_PORT_KEY: REDIS_PORT
+    REDIS_PORT_VALUE: "6379"
+
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+  protocol: TCP
