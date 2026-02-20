@@ -1,25 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "analytics.fullname" . }}
+  name: {{ include "simulator.fullname" . }}
   labels:
-    {{- include "analytics.labels" . | nindent 4 }}
+    {{- include "simulator.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "analytics.name" . }}
+      app:  {{ include "simulator.name" . }}
   template:
     metadata:
       labels:
-        app: {{ include "analytics.name" . }}
+        app: {{ include "simulator.name" . }}
     spec:
       containers:
-      - name: {{ include "analytics.name" . }}
+      - name: {{ include "simulator.name" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        ports:
-        - containerPort: {{ .Values.service.port }}
         env:
         - name: REDIS_HOST
           value: {{ .Values.redis.host }}

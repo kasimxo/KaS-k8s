@@ -123,6 +123,8 @@ Aquí se detalla cómo migrar cada servicio de su archivo yaml a su correspondie
 
 1. Guía 
 
+*Nota: Este microservicio no necesita de un archivo servicio.yaml, basta con definir un deployment.yaml*
+
 2. Comandos
 
 ### Orquestador
