@@ -3,19 +3,19 @@ dashboard:
   replicaCount: 1
   image:
     repository: dashboard
-    tag: latest
+    tag: v3
 
 analytics:
   replicaCount: 1
   image:
     repository: analytics
-    tag: latest
+    tag: v2
 
 simulator:
   replicaCount: 3
   image:
     repository: simulator
-    tag: latest
+    tag: v1
 
 redis:
   enabled: true
