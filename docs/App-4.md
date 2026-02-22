@@ -134,3 +134,7 @@ Este es el Chart encargado de orquestar el resto de charts y de coordinar los mi
 1. Guía 
 
 2. Comandos
+
+    ```
+    helm upgrade --install network-monitoring .
+    ```
