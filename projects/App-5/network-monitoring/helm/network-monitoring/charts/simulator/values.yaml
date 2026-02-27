@@ -1,0 +1,10 @@
+replicaCount: 3
+
+image:
+  repository: simulator
+  tag: v1
+  pullPolicy: Never
+
+redis:
+  host: redis-service
+  port: 6379
