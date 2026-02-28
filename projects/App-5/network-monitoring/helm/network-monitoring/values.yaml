@@ -22,4 +22,4 @@ redis:
 
 ingress:
   enabled: true
-  host: network-monitoring.local
+  host: network-monitoring.local-demo

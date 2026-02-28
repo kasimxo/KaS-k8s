@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: analytics-service
+  name: {{ include "analytics.fullname" . }}
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app: analytics
+    app: {{ include "analytics.name" . }}
   ports:
     - protocol: {{ .Values.service.protocol }}
       port: {{ .Values.service.port }}

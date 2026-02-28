@@ -3,13 +3,16 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "network-monitoring.fullname" . }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
   - host: {{ .Values.ingress.host }}
     http:
       paths:
-      - path: /dashboard
-        pathType: Prefix
+      - path: /dashboard(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: {{ include "dashboard.fullname" .Subcharts.dashboard }}
