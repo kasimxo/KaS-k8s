@@ -2,7 +2,8 @@
 
 En este proyecto se implementa el uso de [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) a modo de API para gestionar el acceso desde el exterior al cluster.
 
-![Diagrama Ingress](https://mermaid.live/edit#pako:eNqNUsGOmzAQ_RVrcmklQIQkQLxVLt0eKvVQdW8NORg8JFaMjWzT7jabf6-J2WSjXsqBmXnz5nk84xM0miNQqNTesP5Avv14qBQhjRSo3IdtsLuPcUK-egZaG3dMsT1y8qk2GyI146RmkqkGDUnijQis7cTeXdQmMI43r0YPzofEDBJfLZpfosHtU7CBbIc6tNLIwTo07wRCPpC9WK_5fPtd892_eHbDUfFwI2btI7akl0wo0gop6YxzHlln9BHprG3byY9_C-4OdNk_R42W2tBZmqYPdyLH0k4SiyxvcPVfKj53rzLdcFK6ldJZXdf3MtlNJpx4U3qbTjRNIBrnMv6ysc13vLDMMIA7OHQxWZ-pFESwN4IDdWbACDo0HRtDOI11FbgDdlgB9S5n5lj593P2NT1TP7Xu3sr8svcHoC2T1kdDz5nDR8H8eq-UAH7hwmlzZbLB6acX1Vx1_A7RfNaDckDnxeUcoCd4BrpI8yTL03K9LIrVYp3mEbx4NE_mZbE6R_Dn0k6alMVy7b98VRbeS5fnv7VGAqM)
+![Diagrama Ingress](./static/app-5-img-1.png)
+Imagen extraída de [Ingress, Kubernetes](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 *Nota: Actualmente Kubernetes recomienda el uso de [Gateway](https://gateway-api.sigs.k8s.io/) en lugar de Ingress, ya que este proyecto ya no está en desarrollo*
 
@@ -53,14 +54,33 @@ Usamos Helm para hacer la instalación:
 ```
 helm install network-monitoring .
 ```
+6. Hacer tunel para poder emplear el ingress
 
-6. Modificar los hosts del sistema
+Para poder conseguir una ip externa que podamos utilizar, necesitamos habilitar el tunel de minikube, lo que le dará una external-ip a nuestro ingress.
 
+```
+minikube tunnel
+```
+
+7. Modificar los hosts del sistema
+
+Ahora podemos ver la ip externa del ingress e introducirla en el archivo hosts del sistema para que funcione a modo de dns.
+
+Para ver la external IP usamos el siguiente comando:
+
+```
+kubectl get svc -n ingress-nginx
+```
+
+Ahora configuramos esa dirección ip con el nombre en el archivo hosts
+
+```
+# Para abrir el archivo hosts
 notepad C:\Windows\System32\drivers\etc\hosts
+```
 
-minikube ip
+Y guardas la ip y nombre:
 
-<minikube-ip> network-monitoring.local
+<external-ip> network-monitoring.local-demo
 
-http://network.local/dashboard
-http://network.local/api
+8. Acceder a través del navegador
