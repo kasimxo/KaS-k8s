@@ -16,6 +16,16 @@ Además de los necesarios para [App-4: network monitoring](App-4.md), instalarem
 
 ## Guía
 
+0. Resetear el clúster
+
+Dado que si intentas hacer instalaciones con todos los servicios y despliegues anteriores te dará problemas, te recomiendo que borres todo el clúster y comiences de 0
+
+```
+minikube delete && minikube start
+```
+
+*Nota: Esto implica que tendrás que volver a hacer build de todas las imágenes*
+
 1. Instalar el controlador
 
 Instalamos el controlador NGINX Ingress controller con el siguiente comando:
@@ -30,4 +40,27 @@ Como ahora vamos a utilizar ingress como puerta de entrada al cluster, ya no nec
 
 3. Crear el recurso ingress
 
-Creamos el recurso ingress dentro de las templates del umbrella chart (chart padre). Puedes ver el contenido del archivo [aquí](./../projects/App-5/network-monitoring/helm/network-monitoring/templates/ingress.yaml)
+Creamos el recurso ingress.yaml dentro de las templates del umbrella chart (chart padre). Puedes ver el contenido del archivo [aquí](./../projects/App-5/network-monitoring/helm/network-monitoring/templates/ingress.yaml)
+
+4. Añadir los values de ingress
+
+En el archivo values.yaml del umbrella chart (chart padre), incluir los nuevos valores para el ingress. Puedes ver el contenido del archivo [aquí](./../projects/App-5/network-monitoring/helm/network-monitoring/values.yaml)
+
+5. Hacer la instalación del chart
+
+Usamos Helm para hacer la instalación:
+
+```
+helm install network-monitoring .
+```
+
+6. Modificar los hosts del sistema
+
+notepad C:\Windows\System32\drivers\etc\hosts
+
+minikube ip
+
+<minikube-ip> network-monitoring.local
+
+http://network.local/dashboard
+http://network.local/api

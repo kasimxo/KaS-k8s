@@ -1,23 +1,25 @@
+{{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: network-monitoring-ingress
+  name: {{ include "network-monitoring.fullname" . }}
 spec:
   rules:
-  - host: network.local
+  - host: {{ .Values.ingress.host }}
     http:
       paths:
       - path: /dashboard
         pathType: Prefix
         backend:
           service:
-            name: dashboard-service
+            name: {{ include "dashboard.fullname" .Subcharts.dashboard }}
             port:
               number: 8000
       - path: /api
         pathType: Prefix
         backend:
           service:
-            name: analytics-service
+            name: {{ include "analytics.fullname" .Subcharts.analytics }}
             port:
               number: 8000
+{{- end }}

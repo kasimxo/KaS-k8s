@@ -19,3 +19,7 @@ simulator:
 
 redis:
   enabled: true
+
+ingress:
+  enabled: true
+  host: network-monitoring.local

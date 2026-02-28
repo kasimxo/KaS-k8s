@@ -69,8 +69,12 @@ Aquí se detalla cómo migrar cada servicio de su archivo yaml a su correspondie
     > <b>INSTALLATION FAILED: Service "dashboard-dashboard" is invalid: spec.ports[0].nodePort: Invalid value: 30081: provided port is already allocated</b>
     >
     > Self explanatory. Como ya tenemos este puerto ocupado con el otro servicio, entra en conflicto. Aquí hay dos soluciones posibles:
+    >
     > Modificar el puerto. Puedes cambiar la configuración del values.yaml o pasar el parámetro en el momento de hacer install
+    >
     > Borrar el actual para poder hacer la instalación del Chart
+    >
+    > Borrar directamente todo el cluster (minikube delete && minikube start)
 
     > <b>Importante:</b>
     >

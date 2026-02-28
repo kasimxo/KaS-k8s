@@ -6,5 +6,4 @@ image:
   pullPolicy: Never
 
 redis:
-  host: redis-service
   port: 6379
