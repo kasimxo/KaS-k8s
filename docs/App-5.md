@@ -81,6 +81,6 @@ notepad C:\Windows\System32\drivers\etc\hosts
 
 Y guardas la ip y nombre:
 
-<external-ip> network-monitoring.local-demo
+< external-ip > network-monitoring.local-demo
 
 8. Acceder a través del navegador
