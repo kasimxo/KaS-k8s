@@ -13,7 +13,7 @@ Imagen extraída de [Ingress, Kubernetes](https://kubernetes.io/docs/concepts/se
 
 ## Requisitos
 
-Además de los necesarios para [App-4: network monitoring](App-4.md), instalaremos un ingresscontroller en el cluster
+Además de los necesarios para [App-4: network monitoring](App-4.md), instalaremos un ingresscontroller en el cluster.
 
 ## Guía
 
@@ -84,3 +84,7 @@ Y guardas la ip y nombre:
 < external-ip > network-monitoring.local-demo
 
 8. Acceder a través del navegador
+
+Ahora en el navegador podrás acceder al dashboard con la dirección:
+
+network-monitoring.local-demo/dashboard

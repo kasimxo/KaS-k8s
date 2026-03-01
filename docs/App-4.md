@@ -32,6 +32,14 @@ Aquí se detalla cómo migrar cada servicio de su archivo yaml a su correspondie
 
     Creamos el archivo Chart.yaml correspondiente a dashboard. Puedes ver su contenido [aquí](../projects/App-4/network-monitoring/heml/network-monitoring/Chart.yaml).
 
+    1.3 Archivo Values
+
+    Para aprovechar las posibilidades de Helm, creamos un archivo values.yaml que reúne las variables de este pod y servicio. Puedes ver su contenido [aquí](./../projects/App-4/network-monitoring/helm/network-monitoring/charts/dashboard/values.yaml).
+
+    1.4 Archivo _helpers
+
+    En el archivo _helpers.tlp podemos incluir condicionales o resoluciones. En este caso es útil para resolver el nombre del pod y agregarle anotaciones. Puedes ver el contenido del archivo [aquí](./../projects/App-4/network-monitoring/helm/network-monitoring/charts/dashboard/templates/_helpers.tpl).
+
 2. Comandos
 
     2.1 Validación de charts
