@@ -6,8 +6,8 @@ logger = logging.getLogger(__name__)
 
 def dashboard(request):
     try:
-        response = requests.get(
-            "http://analytics-service:8000/metrics",
+        response = requests.get( 
+            "http://network-monitoring-analytics:8000/metrics",
             timeout=1
         )
 

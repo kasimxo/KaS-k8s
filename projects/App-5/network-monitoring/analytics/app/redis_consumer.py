@@ -12,6 +12,8 @@ STREAM_NAME = "antenna_stream"
 last_id = "0-0"
 
 def read_batch(count=100):
+    print(f"Attempting to read batch from Redis stream... {REDIS_HOST}:{REDIS_PORT}")
+
     global last_id
 
     messages = r.xread(

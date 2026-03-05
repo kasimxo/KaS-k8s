@@ -6,7 +6,7 @@ image:
   pullPolicy: Never
 
 redis:
-  host: redis-service
+  host: network-monitoring-redis
   port: 6379
 
 service:
